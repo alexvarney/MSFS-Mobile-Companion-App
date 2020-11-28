@@ -6,15 +6,15 @@ import Button from "../atoms/button";
 const NavContainer = styled.nav`
   display: flex;
   background-color: ${(props) => props.theme.colors.grey_dark};
-  padding: 0.25rem;
+  padding: 0.5rem;
   align-items: center;
 
   & img {
-    max-height: 3rem;
+    max-height: 2rem;
   }
 
   & > * + * {
-    margin-left: 16px;
+    margin-left: 0.75rem;
   }
 `;
 
