@@ -8,6 +8,7 @@ import socket
 import asyncio
 from threading import Thread
 import datetime
+from flask_cors import CORS
 
 print (socket.gethostbyname(socket.gethostname()))
 
@@ -27,6 +28,7 @@ def flask_thread_func(threadname):
     global ae
     
     app = Flask(__name__)
+    CORS(app)
     log = logging.getLogger('werkzeug')
     log.disabled = True
     
