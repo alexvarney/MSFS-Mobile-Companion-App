@@ -9,6 +9,7 @@ const Button = styled.button`
   font-size: 1rem;
   border: none;
   border-radius: 0.25rem;
+  cursor: pointer;
 
   :hover {
     filter: brightness(0.9);
