@@ -4,7 +4,7 @@ import { QueryCache, ReactQueryCacheProvider } from "react-query";
 import useDataPolling from "../hooks/useDataPolling";
 import ThemeProvider from "./util/theme-provider";
 import { BrowserRouter as Router } from "react-router-dom";
-import Nav from "./organisms/nav";
+import Header from "./organisms/header";
 import StateRouter from "./util/state-router";
 
 import styled from "styled-components";
@@ -26,7 +26,7 @@ function App() {
       <ThemeProvider>
         <Router>
           <MainContainer>
-            <Nav />
+            <Header />
             <StateRouter />
           </MainContainer>
         </Router>

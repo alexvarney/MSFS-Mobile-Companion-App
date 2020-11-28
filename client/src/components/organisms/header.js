@@ -4,7 +4,7 @@ import Logo from "../../../../static/img/fs_mca_logo.png";
 import { ButtonStyles } from "../atoms/button";
 import { Link } from "react-router-dom";
 
-const NavContainer = styled.nav`
+const HeaderContainer = styled.nav`
   display: flex;
   background-color: ${(props) => props.theme.colors.grey_dark};
   padding: 0.5rem;
@@ -24,14 +24,14 @@ const Button = styled(Link)`
   text-decoration: none;
 `;
 
-export default function Nav() {
+export default function Header() {
   return (
-    <NavContainer>
+    <HeaderContainer>
       <Link to="/">
         <img src={Logo} />
       </Link>
       <Button to="/">Map</Button>
       <Button to="/nav">NAV</Button>
-    </NavContainer>
+    </HeaderContainer>
   );
 }
