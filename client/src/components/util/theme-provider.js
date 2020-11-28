@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
 
 const theme = {
   colors: {
@@ -10,6 +10,17 @@ const theme = {
   },
 };
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${(props) => props.theme.colors.grey_medium};
+  }
+`;
+
 export default function GlobalThemeProvider({ children }) {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      {children}
+    </ThemeProvider>
+  );
 }
