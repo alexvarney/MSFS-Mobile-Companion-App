@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const Button = styled.button`
+export const ButtonStyles = css`
   padding: 0.5rem 1rem;
   color: ${(props) => props.theme.colors.grey_dark};
   background-color: ${(props) => props.theme.colors.yellow_primary};
@@ -10,6 +10,7 @@ const Button = styled.button`
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
+  font-weight: 600;
 
   :hover {
     filter: brightness(0.9);
@@ -18,6 +19,10 @@ const Button = styled.button`
   :active {
     filter: brightness(0.75);
   }
+`;
+
+const Button = styled.button`
+  ${ButtonStyles}
 `;
 
 export default Button;

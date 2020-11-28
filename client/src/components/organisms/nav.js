@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Logo from "../../../../static/img/fs_mca_logo.png";
-import Button from "../atoms/button";
+import { ButtonStyles } from "../atoms/button";
+import { Link } from "react-router-dom";
 
 const NavContainer = styled.nav`
   display: flex;
@@ -18,12 +19,19 @@ const NavContainer = styled.nav`
   }
 `;
 
+const Button = styled(Link)`
+  ${ButtonStyles}
+  text-decoration: none;
+`;
+
 export default function Nav() {
   return (
     <NavContainer>
-      <img src={Logo} />
-      <Button>Map</Button>
-      <Button>Button</Button>
+      <Link to="/">
+        <img src={Logo} />
+      </Link>
+      <Button to="/">Map</Button>
+      <Button to="/nav">NAV</Button>
     </NavContainer>
   );
 }
