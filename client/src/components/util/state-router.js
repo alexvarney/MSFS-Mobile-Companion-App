@@ -1,11 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Map from "../states/map";
 import Pane from "../atoms/pane";
 
-const NavComponent = () => <p style={{ color: "#fff" }}>Nav</p>;
+//States
+import Map from "../states/map";
+import NavRadios from "../states/nav-radios";
 
-export default function StateRouter() {
+export default React.memo(function StateRouter() {
   return (
     <Switch>
       <Route exact path="/">
@@ -15,9 +16,9 @@ export default function StateRouter() {
       </Route>
       <Route path="/nav">
         <Pane>
-          <NavComponent />
+          <NavRadios />
         </Pane>
       </Route>
     </Switch>
   );
-}
+});

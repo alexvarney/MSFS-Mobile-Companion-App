@@ -24,7 +24,7 @@ const Button = styled(Link)`
   text-decoration: none;
 `;
 
-export default function Header() {
+export default React.memo(function Header() {
   return (
     <HeaderContainer>
       <Link to="/">
@@ -34,4 +34,4 @@ export default function Header() {
       <Button to="/nav">NAV</Button>
     </HeaderContainer>
   );
-}
+});

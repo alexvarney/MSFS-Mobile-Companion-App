@@ -1,6 +1,7 @@
 import "../app.css";
-import React from "react";
-import { QueryCache, ReactQueryCacheProvider } from "react-query";
+import React, { useMemo } from "react";
+
+import { ReactQueryDevtools } from "react-query-devtools";
 import useDataPolling from "../hooks/useDataPolling";
 import ThemeProvider from "./util/theme-provider";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -16,22 +17,26 @@ const MainContainer = styled.main`
   grid-template-rows: auto 1fr;
 `;
 
-const queryCache = new QueryCache();
+const MemoizedAppContents = React.memo(() => {
+  return (
+    <ThemeProvider>
+      <Router>
+        <MainContainer>
+          <Header />
+          <StateRouter />
+        </MainContainer>
+      </Router>
+    </ThemeProvider>
+  );
+});
 
 function App() {
   useDataPolling();
 
   return (
-    <ReactQueryCacheProvider queryCache={queryCache}>
-      <ThemeProvider>
-        <Router>
-          <MainContainer>
-            <Header />
-            <StateRouter />
-          </MainContainer>
-        </Router>
-      </ThemeProvider>
-    </ReactQueryCacheProvider>
+    <>
+      <MemoizedAppContents />
+    </>
   );
 }
 

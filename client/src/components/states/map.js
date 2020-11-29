@@ -88,8 +88,6 @@ export default function MapState() {
   const { latLng, heading } = usePosition();
   const [followAirfraft, setFollowAircraft] = useState(true);
 
-  console.log(heading);
-
   return (
     <Wrapper heading={heading}>
       <ToggleButton

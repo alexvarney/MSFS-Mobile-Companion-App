@@ -1,34 +1,36 @@
 import { useEffect } from "react";
 import useDataStore from "../stores/data-store";
-import {
-  useQuery,
-  useQueryCache,
-  useMutation,
-  QueryCache,
-  ReactQueryCacheProvider,
-} from "react-query";
+import { useQuery } from "react-query";
 
-const API_ROUTE = "http://192.168.0.22:4000/ui";
+export const BASE_PATH = "http://192.168.0.22:4000/";
+
+const truncateCoordinate = (x) => (x ? parseFloat(x).toFixed(5) : 0);
 
 const useDataPolling = () => {
-  const cache = useQueryCache();
-  const { setValues } = useDataStore();
+  const { state, setValues } = useDataStore();
 
-  const { status, data, error } = useQuery(
+  const { data } = useQuery(
     "simData",
     async () => {
-      const response = await fetch(API_ROUTE);
+      const response = await fetch(BASE_PATH + "ui");
       const data = await response.json();
+
+      data.LATITUDE = truncateCoordinate(data?.LATITUDE);
+      data.LONGITUDE = truncateCoordinate(data?.LONGITUDE);
+
       return data;
     },
     {
-      refetchInterval: 500,
+      refetchInterval: 1000,
     }
   );
 
-  useEffect(() => setValues(data), [data]);
-
-  return { status, data };
+  useEffect(() => {
+    if (JSON.stringify(state) !== JSON.stringify(data)) {
+      console.log("data changed, updating");
+      setValues(data);
+    }
+  }, [data]);
 };
 
 export default useDataPolling;
