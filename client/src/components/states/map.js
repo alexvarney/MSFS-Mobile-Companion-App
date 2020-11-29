@@ -67,19 +67,16 @@ const UpdateMap = ({ follow }) => {
   const map = useMap();
   const { latLng } = usePosition();
 
-  React.useEffect(() => follow && map.setView(latLng, map.getZoom()), [
-    latLng,
-    follow,
-  ]);
-
   React.useEffect(() => {
+    map.off("zoomend");
     if (follow) {
       map.dragging.disable();
       map.setView(latLng, map.getZoom());
+      map.on("zoomend", () => map.setView(latLng, map.getZoom()));
     } else {
       map.dragging.enable();
     }
-  }, [follow]);
+  }, [follow, latLng]);
 
   return null;
 };
